@@ -30,29 +30,33 @@ export const OrderAdd: React.FC<Props> = ({ onAdd }) => {
 
     getProductById(productById._id)
       .then((response) => {
-        if (response) {
+        const newOrder: Order = {
+          _id: "",
+          orderNumber,
+          customerName,
+          orderDate: new Date(orderDate),
+          totalCost: parseFloat(totalCost),
+          products: [
+            {
+              _id: productById._id,
+              name: productById.name,
+              category: productById.category,
+              price: productById.price,
+              quantity: productById.quantity,
+            },
+          ],
+        };
+        if (response && response.length > 0) {
           setProductById({
             ...productById,
             ...response,
           });
-          const newOrder: Order = {
-            _id: "",
-            orderNumber,
-            customerName,
-            orderDate: new Date(orderDate),
-            totalCost: parseFloat(totalCost),
-            products: [
-              {
-                _id: response[0]._id ?? productById._id,
-                name: response[0].name ?? productById.name,
-                category: response[0].category ?? productById.category,
-                price: response[0].price ?? productById.price,
-                quantity: response[0].quantity ?? productById.quantity,
-              },
-            ],
+          newOrder.products[0] = {
+            ...productById,
+            ...response[0],
           };
-          onAdd(newOrder);
         }
+        onAdd(newOrder);
       })
       .finally(() => {
         setOrderNumber("");
