@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "664c848635bbfd344270baf9"
+  },
+  "name": "Clothes",
+  "category": "Clothes",
+  "price": 129.99,
+  "quantity": 6,
+  "orders": []
+},
+{
+  "_id": {
+    "$oid": "664ca80225072fa72ae5adf5"
+  },
+  "name": "Food",
+  "category": "Food",
+  "price": 290,
+  "quantity": 4,
+  "orders": []
+}]

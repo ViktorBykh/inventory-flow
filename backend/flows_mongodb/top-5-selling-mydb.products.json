@@ -1,0 +1,20 @@
+[{
+  "_id": "Watching",
+  "totalQuantity": 68
+},
+{
+  "_id": "Product",
+  "totalQuantity": 40
+},
+{
+  "_id": "Smartphone",
+  "totalQuantity": 20
+},
+{
+  "_id": "Clothes",
+  "totalQuantity": 6
+},
+{
+  "_id": "Food",
+  "totalQuantity": 4
+}]
