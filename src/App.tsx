@@ -12,12 +12,12 @@ import { LoginForm } from "./components/LoginForm";
 export const App = () => {
   const userRole = localStorage.getItem("role");
   return (
-    <Router basename="/">
+    <Router basename="/inventory-flow">
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginForm />} />
-        <Route path="/categories" Component={CategoryList} />
-        {userRole === "Admin" && <Route path="/orders" Component={OrderList} />}
+        {userRole === "Admin" && <Route path="/categories" Component={CategoryList} />}
+        <Route path="/orders" Component={OrderList} />
         <Route path="/products" Component={ProductList} />
       </Routes>
     </Router>
