@@ -171,7 +171,7 @@ Houses utility functions used across the application.
 
 #### 1. Get All Products
 
-- **Endpoint:** `/api/products`
+- **Endpoint:** `/products`
 - **Method:** GET
 - **Description:** Retrieves a list of all products.
 - **Responses:**
@@ -180,7 +180,7 @@ Houses utility functions used across the application.
 
 #### 2. Get Product by ID
 
-- **Endpoint:** `/api/products/:productId`
+- **Endpoint:** `/products/:productId`
 - **Method:** GET
 - **Description:** Retrieves details of a specific product by its ID.
 - **Parameters:**
@@ -191,7 +191,7 @@ Houses utility functions used across the application.
 
 #### 3. Create a New Product
 
-- **Endpoint:** `/api/products`
+- **Endpoint:** `/products`
 - **Method:** POST
 - **Description:** Creates a new product with the provided details.
 - **Request Body:**
@@ -204,7 +204,7 @@ Houses utility functions used across the application.
 
 #### 4. Update a Product
 
-- **Endpoint:** `/api/products/:productId`
+- **Endpoint:** `/products/:productId`
 - **Method:** PUT
 - **Description:** Updates an existing product with the provided details.
 - **Parameters:**
@@ -220,7 +220,7 @@ Houses utility functions used across the application.
 
 #### 5. Delete a Product
 
-- **Endpoint:** `/api/products/:productId`
+- **Endpoint:** `/products/:productId`
 - **Method:** DELETE
 - **Description:** Deletes a specific product by its ID.
 - **Parameters:**
@@ -235,7 +235,7 @@ Houses utility functions used across the application.
 
 #### 1. Get All Categories
 
-- **Endpoint:** `/api/categories`
+- **Endpoint:** `/categories`
 - **Method:** GET
 - **Description:** Retrieves a list of all categories.
 - **Responses:**
@@ -244,7 +244,7 @@ Houses utility functions used across the application.
 
 #### 2. Create a New Category
 
-- **Endpoint:** `/api/categories`
+- **Endpoint:** `/categories`
 - **Method:** POST
 - **Description:** Creates a new category with the provided details.
 - **Request Body:**
@@ -255,7 +255,7 @@ Houses utility functions used across the application.
 
 #### 3. Update a Category
 
-- **Endpoint:** `/api/categories/:categoryId`
+- **Endpoint:** `/categories/:categoryId`
 - **Method:** PUT
 - **Description:** Updates an existing category with the provided details.
 - **Parameters:**
@@ -269,7 +269,7 @@ Houses utility functions used across the application.
 
 #### 4. Delete a Category
 
-- **Endpoint:** `/api/categories/:categoryId`
+- **Endpoint:** `/categories/:categoryId`
 - **Method:** DELETE
 - **Description:** Deletes a specific category by its ID.
 - **Parameters:**
@@ -284,7 +284,7 @@ Houses utility functions used across the application.
 
 #### 1. Get All Orders
 
-- **Endpoint:** `/api/orders`
+- **Endpoint:** `/orders`
 - **Method:** GET
 - **Description:** Retrieves a list of all orders.
 - **Responses:**
@@ -292,7 +292,7 @@ Houses utility functions used across the application.
 
 #### 2. Create a New Order
 
-- **Endpoint:** `/api/orders`
+- **Endpoint:** `/orders`
 - **Method:** POST
 - **Description:** Creates a new order with the provided details.
 - **Request Body:**
@@ -304,7 +304,7 @@ Houses utility functions used across the application.
 
 #### 3. Update an Order
 
-- **Endpoint:** `/api/orders/:orderId`
+- **Endpoint:** `/orders/:orderId`
 - **Method:** PUT
 - **Description:** Updates an existing order with the provided details.
 - **Parameters:**
@@ -319,7 +319,7 @@ Houses utility functions used across the application.
 
 #### 4. Delete an Order
 
-- **Endpoint:** `/api/orders/:orderId`
+- **Endpoint:** `/orders/:orderId`
 - **Method:** DELETE
 - **Description:** Deletes a specific order by its ID.
 - **Parameters:**
