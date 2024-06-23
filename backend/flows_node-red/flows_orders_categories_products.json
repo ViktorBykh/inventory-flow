@@ -1,0 +1,3481 @@
+[
+    {
+        "id": "b074678a654a66c2",
+        "type": "tab",
+        "label": "products",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8ee781dcc81360e0",
+        "type": "tab",
+        "label": "categories",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "22baa481e16868a0",
+        "type": "tab",
+        "label": "orders",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "939768ecf0491544",
+        "type": "mongodb-config",
+        "hostname": "127.0.0.1",
+        "port": "27017",
+        "db": "mydb",
+        "name": "MongoDB"
+    },
+    {
+        "id": "7b48ef8677536b22",
+        "type": "mongodb-aleph-config",
+        "hostname": "cluster.vfoh272.mongodb.net",
+        "topology": "dnscluster",
+        "connectOptions": "",
+        "port": "27017",
+        "db": "mydb",
+        "name": "MongoDB_Cluster"
+    },
+    {
+        "id": "ca89ee2b157cd80d",
+        "type": "mongodb4-client",
+        "name": "MongoDB",
+        "protocol": "mongodb",
+        "hostname": "localhost",
+        "port": "27017",
+        "dbName": "mydb",
+        "appName": "",
+        "authSource": "",
+        "authMechanism": "DEFAULT",
+        "tls": false,
+        "tlsCAFile": "",
+        "tlsCertificateKeyFile": "",
+        "tlsInsecure": false,
+        "connectTimeoutMS": "30000",
+        "socketTimeoutMS": "0",
+        "minPoolSize": "0",
+        "maxPoolSize": "100",
+        "maxIdleTimeMS": "0",
+        "uri": "",
+        "advanced": "{}",
+        "uriTabActive": "tab-uri-simple"
+    },
+    {
+        "id": "c94cb0005d79cd90",
+        "type": "mongodb",
+        "hostname": "127.0.0.1",
+        "port": "27017",
+        "db": "mydb",
+        "name": "MongoDB"
+    },
+    {
+        "id": "89e0262fe23d33e8",
+        "type": "global-config",
+        "name": "global-config",
+        "env": []
+    },
+    {
+        "id": "29827fca2fe7ecb0",
+        "type": "http in",
+        "z": "b074678a654a66c2",
+        "name": "HTTP GET",
+        "url": "/products",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "c1899fe742a2724a"
+            ]
+        ]
+    },
+    {
+        "id": "c1899fe742a2724a",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "GET Query",
+        "func": "msg.payload = {};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 100,
+        "wires": [
+            [
+                "8534b57ed0df5920"
+            ]
+        ]
+    },
+    {
+        "id": "bdb70a4ee933e22e",
+        "type": "http in",
+        "z": "b074678a654a66c2",
+        "name": "HTTP GET by _id",
+        "url": "/products/:productId",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "3cdd165327c0a162"
+            ]
+        ]
+    },
+    {
+        "id": "857930e12f3d2459",
+        "type": "http in",
+        "z": "b074678a654a66c2",
+        "name": "HTTP POST",
+        "url": "/products",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 620,
+        "wires": [
+            [
+                "f1218b145b912641"
+            ]
+        ]
+    },
+    {
+        "id": "f1218b145b912641",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "GET Query",
+        "func": "const productData = {\n    name: msg.req.body.name,\n    category: msg.req.body.category,\n    price: msg.req.body.price,\n    quantity: msg.req.body.quantity\n};\n\nmsg.payload = productData;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 620,
+        "wires": [
+            [
+                "79ceb49be2e5d244"
+            ]
+        ]
+    },
+    {
+        "id": "4a61b6f5d3c3584b",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (201)",
+        "statusCode": "201",
+        "headers": {},
+        "x": 1540,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "faef1bc243eddad5",
+        "type": "debug",
+        "z": "b074678a654a66c2",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "242e32224c0ed9f5",
+        "type": "http in",
+        "z": "b074678a654a66c2",
+        "name": "HTTP PUT",
+        "url": "/products/:productId",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 940,
+        "wires": [
+            [
+                "41617280e2dbc8c4"
+            ]
+        ]
+    },
+    {
+        "id": "6f42e39ab6db10dc",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "UPDATE Query",
+        "func": "const productId = msg.req.params.productId;\nconst updateData = msg.req.body;\n\nmsg.query = {\n    _id: productId\n}\n\nmsg.payload = {\n    $set: updateData\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1250,
+        "y": 820,
+        "wires": [
+            [
+                "50fa9b0af0bfcf6f"
+            ]
+        ]
+    },
+    {
+        "id": "39ce5c3c401afec0",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1970,
+        "y": 780,
+        "wires": [],
+        "info": "Update successful!"
+    },
+    {
+        "id": "8a5134f769eab8f6",
+        "type": "debug",
+        "z": "b074678a654a66c2",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1630,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "c787e266b042bd3b",
+        "type": "switch",
+        "z": "b074678a654a66c2",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 620,
+        "wires": [
+            [
+                "ccf957e1cc53eebe"
+            ],
+            [
+                "240d911b7a304c41"
+            ]
+        ]
+    },
+    {
+        "id": "75313b80e5ed7159",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1220,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "ccf957e1cc53eebe",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "POST Query",
+        "func": "const productData = {\n    name: msg.req.body.name,\n    category: msg.req.body.category,\n    price: msg.req.body.price,\n    quantity: msg.req.body.quantity\n};\n\nmsg.payload = productData;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 560,
+        "wires": [
+            [
+                "2f2b3cb35703dd39"
+            ]
+        ]
+    },
+    {
+        "id": "6bbd6f583b668af3",
+        "type": "switch",
+        "z": "b074678a654a66c2",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 520,
+        "y": 940,
+        "wires": [
+            [
+                "efeef9100d410695"
+            ],
+            [
+                "1c7f83a7750cdfc8"
+            ]
+        ]
+    },
+    {
+        "id": "13fde5736f7d7146",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (403)",
+        "statusCode": "403",
+        "headers": {},
+        "x": 980,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "1c7f83a7750cdfc8",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Handle `Invalid _id format` Error",
+        "func": "const productId = msg.req.params.productId;\nmsg.payload = {\n    message: `Invalid _id format: ${productId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 1000,
+        "wires": [
+            [
+                "13fde5736f7d7146"
+            ]
+        ]
+    },
+    {
+        "id": "4a34ac230f0c421e",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Create `Product was updated` Response",
+        "func": "const productId = msg.req.params.productId;\nmsg.payload = {\n    message: `Product with _id - ${productId} - was updated`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1710,
+        "y": 780,
+        "wires": [
+            [
+                "39ce5c3c401afec0"
+            ]
+        ]
+    },
+    {
+        "id": "240d911b7a304c41",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Handle `Product already exists` Error",
+        "func": "const productName = msg.payload[0].name;\n\nmsg.payload = {\n    message: `Product with name - ${productName} - already exists`\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 680,
+        "wires": [
+            [
+                "75313b80e5ed7159"
+            ]
+        ]
+    },
+    {
+        "id": "a0c145984374a5f2",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Create `Product was created` Response",
+        "func": "const productName = msg.payload.name;\nconst productId = msg.payload._id;\nmsg.payload = {\n    message: `Product with name - ${productName} - was created`,\n    _id: productId\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 520,
+        "wires": [
+            [
+                "4a61b6f5d3c3584b"
+            ]
+        ]
+    },
+    {
+        "id": "77b4a73fd962019c",
+        "type": "switch",
+        "z": "b074678a654a66c2",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1090,
+        "y": 300,
+        "wires": [
+            [
+                "21ddabbaaa3675a6",
+                "0e8d0a259cceb0df"
+            ],
+            [
+                "ac63475cb3edf835"
+            ]
+        ]
+    },
+    {
+        "id": "3f86578969c82846",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1600,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "ac63475cb3edf835",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Handle `No product with _id` Error",
+        "func": "const productId = msg.req.params.productId;\nmsg.payload = {\n    message: `No product with _id: ${productId}`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1340,
+        "y": 340,
+        "wires": [
+            [
+                "3f86578969c82846"
+            ]
+        ]
+    },
+    {
+        "id": "44ab876b1ce79811",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 880,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "6508b90d668c9d8d",
+        "type": "debug",
+        "z": "b074678a654a66c2",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "f379e6f370d4dff2",
+        "type": "switch",
+        "z": "b074678a654a66c2",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 100,
+        "wires": [
+            [
+                "6508b90d668c9d8d",
+                "44ab876b1ce79811"
+            ],
+            [
+                "4c497e71cb86688e"
+            ]
+        ]
+    },
+    {
+        "id": "4c497e71cb86688e",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Handle `No products yet` Error",
+        "func": "msg.payload = {\n    message: `No products yet`\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 140,
+        "wires": [
+            [
+                "0a7271dc68508284"
+            ]
+        ]
+    },
+    {
+        "id": "0a7271dc68508284",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1180,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "97f44e3332fec8d7",
+        "type": "switch",
+        "z": "b074678a654a66c2",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "69e8a39020ffa63f"
+            ],
+            [
+                "24df42534c885710"
+            ]
+        ]
+    },
+    {
+        "id": "24df42534c885710",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Handle `Invalid _id format` Error",
+        "func": "const productId = msg.req.params.productId;\nmsg.payload = {\n    message: `Invalid _id format: ${productId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 420,
+        "wires": [
+            [
+                "6ef1825b30206516"
+            ]
+        ]
+    },
+    {
+        "id": "6ef1825b30206516",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (403)",
+        "statusCode": "403",
+        "headers": {},
+        "x": 980,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "341aa3f9b1977831",
+        "type": "http in",
+        "z": "b074678a654a66c2",
+        "name": "HTTP DELETE",
+        "url": "/products/:productId",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 1220,
+        "wires": [
+            [
+                "cf13e99b77113acf"
+            ]
+        ]
+    },
+    {
+        "id": "6263f04d78670c91",
+        "type": "debug",
+        "z": "b074678a654a66c2",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1940,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "55ee6c79e028d0fa",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 2280,
+        "y": 1060,
+        "wires": [],
+        "info": "Update successful!"
+    },
+    {
+        "id": "01b809c703683101",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Create `Product was deleted` Response",
+        "func": "const productId = msg.req.params.productId;\nmsg.payload = {\n    message: `Product with _id - ${productId} - was deleted`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2020,
+        "y": 1060,
+        "wires": [
+            [
+                "55ee6c79e028d0fa"
+            ]
+        ]
+    },
+    {
+        "id": "21ddabbaaa3675a6",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1260,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "0e8d0a259cceb0df",
+        "type": "debug",
+        "z": "b074678a654a66c2",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2f2b3cb35703dd39",
+        "type": "mongodb-aleph-out",
+        "z": "b074678a654a66c2",
+        "mongodb": "7b48ef8677536b22",
+        "name": "insert",
+        "collection": "products",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "insert",
+        "x": 1030,
+        "y": 560,
+        "wires": [
+            [
+                "faef1bc243eddad5",
+                "a0c145984374a5f2"
+            ]
+        ]
+    },
+    {
+        "id": "50fa9b0af0bfcf6f",
+        "type": "mongodb-aleph-out",
+        "z": "b074678a654a66c2",
+        "mongodb": "7b48ef8677536b22",
+        "name": "update",
+        "collection": "products",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "update",
+        "x": 1440,
+        "y": 820,
+        "wires": [
+            [
+                "8a5134f769eab8f6",
+                "4a34ac230f0c421e"
+            ]
+        ]
+    },
+    {
+        "id": "01cde88f9d72a419",
+        "type": "mongodb-aleph-out",
+        "z": "b074678a654a66c2",
+        "mongodb": "7b48ef8677536b22",
+        "name": "remove",
+        "collection": "products",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 1720,
+        "y": 1100,
+        "wires": [
+            [
+                "6263f04d78670c91",
+                "01b809c703683101"
+            ]
+        ]
+    },
+    {
+        "id": "8534b57ed0df5920",
+        "type": "mongodb-aleph-in",
+        "z": "b074678a654a66c2",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find",
+        "collection": "products",
+        "operation": "find",
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "f379e6f370d4dff2"
+            ]
+        ]
+    },
+    {
+        "id": "02cd584e28197001",
+        "type": "mongodb-aleph-in",
+        "z": "b074678a654a66c2",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find by _id",
+        "collection": "products",
+        "operation": "find",
+        "x": 910,
+        "y": 300,
+        "wires": [
+            [
+                "77b4a73fd962019c"
+            ]
+        ]
+    },
+    {
+        "id": "79ceb49be2e5d244",
+        "type": "mongodb-aleph-in",
+        "z": "b074678a654a66c2",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find",
+        "collection": "products",
+        "operation": "find",
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "c787e266b042bd3b"
+            ]
+        ]
+    },
+    {
+        "id": "30b8ced45c2273a4",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "DELETE by _id Query",
+        "func": "const productId = msg.req.params.productId;\nmsg.payload = { _id: productId };\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 1100,
+        "wires": [
+            [
+                "7f9a3393249de3fe"
+            ]
+        ]
+    },
+    {
+        "id": "41617280e2dbc8c4",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "GET by _id Query",
+        "func": "const productId = msg.req.params.productId;\n\nif (typeof productId !== 'string'\n    || productId.length !== 24\n    || !/^[0-9a-fA-F]{24}$/.test(productId)) {\n    msg.payload = {};\n    return msg;\n}\n\nmsg.payload = { _id: productId };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 940,
+        "wires": [
+            [
+                "6bbd6f583b668af3"
+            ]
+        ]
+    },
+    {
+        "id": "3cdd165327c0a162",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "GET by _id Query",
+        "func": "const productId = msg.req.params.productId;\n\nif (typeof productId !== 'string' \n        || productId.length !== 24 \n        || !/^[0-9a-fA-F]{24}$/.test(productId)) {\n    msg.payload = {};\n    return msg;\n}\n\nmsg.payload._id = productId;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "97f44e3332fec8d7"
+            ]
+        ]
+    },
+    {
+        "id": "69e8a39020ffa63f",
+        "type": "objectid",
+        "z": "b074678a654a66c2",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 710,
+        "y": 300,
+        "wires": [
+            [
+                "02cd584e28197001"
+            ]
+        ]
+    },
+    {
+        "id": "efeef9100d410695",
+        "type": "objectid",
+        "z": "b074678a654a66c2",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 710,
+        "y": 880,
+        "wires": [
+            [
+                "fec850189dadfb2f"
+            ]
+        ]
+    },
+    {
+        "id": "7f9a3393249de3fe",
+        "type": "objectid",
+        "z": "b074678a654a66c2",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 1510,
+        "y": 1100,
+        "wires": [
+            [
+                "01cde88f9d72a419"
+            ]
+        ]
+    },
+    {
+        "id": "fec850189dadfb2f",
+        "type": "mongodb-aleph-in",
+        "z": "b074678a654a66c2",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find by _id",
+        "collection": "products",
+        "operation": "find",
+        "x": 920,
+        "y": 880,
+        "wires": [
+            [
+                "cf28914ea66703e1"
+            ]
+        ]
+    },
+    {
+        "id": "cf28914ea66703e1",
+        "type": "switch",
+        "z": "b074678a654a66c2",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1080,
+        "y": 880,
+        "wires": [
+            [
+                "6f42e39ab6db10dc"
+            ],
+            [
+                "3455256a44eb8417"
+            ]
+        ]
+    },
+    {
+        "id": "3455256a44eb8417",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Handle `No product with _id` Error",
+        "func": "const productId = msg.req.params.productId;\nmsg.payload = {\n    message: `No product with _id: ${productId}`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1310,
+        "y": 920,
+        "wires": [
+            [
+                "6bed84b31184bea3"
+            ]
+        ]
+    },
+    {
+        "id": "6bed84b31184bea3",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1570,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "bf90a157d57ebf41",
+        "type": "switch",
+        "z": "b074678a654a66c2",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 1220,
+        "wires": [
+            [
+                "7c6d8dc0593f260f"
+            ],
+            [
+                "2f52b908c46fa2e6"
+            ]
+        ]
+    },
+    {
+        "id": "da58dd3162f45127",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (403)",
+        "statusCode": "403",
+        "headers": {},
+        "x": 970,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "2f52b908c46fa2e6",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Handle `Invalid _id format` Error",
+        "func": "const productId = msg.req.params.productId;\nmsg.payload = {\n    message: `Invalid _id format: ${productId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 1280,
+        "wires": [
+            [
+                "da58dd3162f45127"
+            ]
+        ]
+    },
+    {
+        "id": "cf13e99b77113acf",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "GET by _id Query",
+        "func": "const productId = msg.req.params.productId;\n\nif (typeof productId !== 'string'\n    || productId.length !== 24\n    || !/^[0-9a-fA-F]{24}$/.test(productId)) {\n    msg.payload = {};\n    return msg;\n}\n\nmsg.payload = { _id: productId };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1220,
+        "wires": [
+            [
+                "bf90a157d57ebf41"
+            ]
+        ]
+    },
+    {
+        "id": "7c6d8dc0593f260f",
+        "type": "objectid",
+        "z": "b074678a654a66c2",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 700,
+        "y": 1160,
+        "wires": [
+            [
+                "f299d74a9dc3f482"
+            ]
+        ]
+    },
+    {
+        "id": "f299d74a9dc3f482",
+        "type": "mongodb-aleph-in",
+        "z": "b074678a654a66c2",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find by _id",
+        "collection": "products",
+        "operation": "find",
+        "x": 910,
+        "y": 1160,
+        "wires": [
+            [
+                "90c3980bb7a8179e"
+            ]
+        ]
+    },
+    {
+        "id": "90c3980bb7a8179e",
+        "type": "switch",
+        "z": "b074678a654a66c2",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1070,
+        "y": 1160,
+        "wires": [
+            [
+                "30b8ced45c2273a4"
+            ],
+            [
+                "309f1cbc16c37f64"
+            ]
+        ]
+    },
+    {
+        "id": "309f1cbc16c37f64",
+        "type": "function",
+        "z": "b074678a654a66c2",
+        "name": "Handle `No product with _id` Error",
+        "func": "const productId = msg.req.params.productId;\nmsg.payload = {\n    message: `No product with _id: ${productId}`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 1220,
+        "wires": [
+            [
+                "1dda29146a0c8e3d"
+            ]
+        ]
+    },
+    {
+        "id": "1dda29146a0c8e3d",
+        "type": "http response",
+        "z": "b074678a654a66c2",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1560,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "d427b7f935c11e72",
+        "type": "http in",
+        "z": "8ee781dcc81360e0",
+        "name": "HTTP GET",
+        "url": "/categories",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "44d74b8032f989b4"
+            ]
+        ]
+    },
+    {
+        "id": "44d74b8032f989b4",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "GET Query",
+        "func": "msg.payload = {};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 100,
+        "wires": [
+            [
+                "12d0dbd0d21484b0"
+            ]
+        ]
+    },
+    {
+        "id": "a371185004d98c39",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 880,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "16016c4ece6ec530",
+        "type": "switch",
+        "z": "8ee781dcc81360e0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 100,
+        "wires": [
+            [
+                "a371185004d98c39",
+                "f2eeb2ef3d094182"
+            ],
+            [
+                "1b0ca0b23f980722"
+            ]
+        ]
+    },
+    {
+        "id": "1b0ca0b23f980722",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Handle `No categories yet` Error",
+        "func": "msg.payload = {\n    message: `No categories yet`\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 140,
+        "wires": [
+            [
+                "b72c23ce155d08cc"
+            ]
+        ]
+    },
+    {
+        "id": "b72c23ce155d08cc",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1180,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "b55083369bba00c6",
+        "type": "http in",
+        "z": "8ee781dcc81360e0",
+        "name": "HTTP GET by _id",
+        "url": "/categories/:categoryId",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "358cab44695d2707"
+            ]
+        ]
+    },
+    {
+        "id": "358cab44695d2707",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "GET by _id Query",
+        "func": "const categoryId = msg.req.params.categoryId;\n\nif (typeof categoryId !== 'string'\n    || categoryId.length !== 24\n    || !/^[0-9a-fA-F]{24}$/.test(categoryId)) {\n    msg.payload = {};\n    return msg;\n}\n\nmsg.payload._id = categoryId;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "a862125b5718bb4c"
+            ]
+        ]
+    },
+    {
+        "id": "1067d31416c7e5ba",
+        "type": "switch",
+        "z": "8ee781dcc81360e0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1130,
+        "y": 300,
+        "wires": [
+            [
+                "06aad19960ef8a03"
+            ],
+            [
+                "a2d37851858bee6b"
+            ]
+        ]
+    },
+    {
+        "id": "390bffa5caa356e8",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1640,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a2d37851858bee6b",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Handle `No category with _id` Error",
+        "func": "const categoryId = msg.req.params.categoryId;\nmsg.payload = {\n    message: `No category with _id: ${categoryId}`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 340,
+        "wires": [
+            [
+                "390bffa5caa356e8"
+            ]
+        ]
+    },
+    {
+        "id": "a862125b5718bb4c",
+        "type": "switch",
+        "z": "8ee781dcc81360e0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "4e1c890ecffcc7b1"
+            ],
+            [
+                "559ec10665f28216"
+            ]
+        ]
+    },
+    {
+        "id": "559ec10665f28216",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Handle `Invalid _id format` Error",
+        "func": "const categoryId = msg.req.params.categoryId;\n\nmsg.payload = {\n    message: `Invalid _id format: ${categoryId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 420,
+        "wires": [
+            [
+                "3f579039ea10d0b6"
+            ]
+        ]
+    },
+    {
+        "id": "3f579039ea10d0b6",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (403)",
+        "statusCode": "403",
+        "headers": {},
+        "x": 980,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "70d069b1ec22c60e",
+        "type": "http in",
+        "z": "8ee781dcc81360e0",
+        "name": "HTTP POST",
+        "url": "/categories",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 620,
+        "wires": [
+            [
+                "bf905fea73f075df"
+            ]
+        ]
+    },
+    {
+        "id": "bf905fea73f075df",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "GET Query",
+        "func": "const categoryData = {\n    name: msg.req.body.name,\n    description: msg.req.body.description\n};\nmsg.payload = categoryData;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 620,
+        "wires": [
+            [
+                "f9518be476d64d49"
+            ]
+        ]
+    },
+    {
+        "id": "68aef19d5432f047",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (201)",
+        "statusCode": "201",
+        "headers": {},
+        "x": 1540,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "f1527d119766b9d5",
+        "type": "debug",
+        "z": "8ee781dcc81360e0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "760cdeaeb9aba974",
+        "type": "switch",
+        "z": "8ee781dcc81360e0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 620,
+        "wires": [
+            [
+                "8279c29d6cfeeff9"
+            ],
+            [
+                "b2a6641ea3357f75"
+            ]
+        ]
+    },
+    {
+        "id": "9ef6473b594dd8ec",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1220,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "8279c29d6cfeeff9",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "POST Query",
+        "func": "const categoryData = {\n    name: msg.req.body.name,\n    description: msg.req.body.description\n};\nmsg.payload = categoryData;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 560,
+        "wires": [
+            [
+                "94616098f581557f"
+            ]
+        ]
+    },
+    {
+        "id": "b2a6641ea3357f75",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Handle `Category already exists` Error",
+        "func": "const categoryName = msg.payload[0].name;\nmsg.payload = {\n    message: `Category with name - ${categoryName} - already exists`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 680,
+        "wires": [
+            [
+                "9ef6473b594dd8ec"
+            ]
+        ]
+    },
+    {
+        "id": "d8dde92678e0bf9e",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Create `Category was created` Response",
+        "func": "const categoryName = msg.req.params.name;\nconst categoryId = msg.payload._id;\n\nmsg.payload = {\n    message: `Category with name - ${categoryName} - was created`,\n    _id: categoryId\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 520,
+        "wires": [
+            [
+                "68aef19d5432f047"
+            ]
+        ]
+    },
+    {
+        "id": "f2eeb2ef3d094182",
+        "type": "debug",
+        "z": "8ee781dcc81360e0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "94616098f581557f",
+        "type": "mongodb-aleph-out",
+        "z": "8ee781dcc81360e0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "insert",
+        "collection": "categories",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "insert",
+        "x": 1030,
+        "y": 560,
+        "wires": [
+            [
+                "f1527d119766b9d5",
+                "d8dde92678e0bf9e"
+            ]
+        ]
+    },
+    {
+        "id": "12d0dbd0d21484b0",
+        "type": "mongodb-aleph-in",
+        "z": "8ee781dcc81360e0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find",
+        "collection": "categories",
+        "operation": "find",
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "16016c4ece6ec530"
+            ]
+        ]
+    },
+    {
+        "id": "5ca9b1403acf2f7e",
+        "type": "mongodb-aleph-in",
+        "z": "8ee781dcc81360e0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find by _id",
+        "collection": "categories",
+        "operation": "find",
+        "x": 930,
+        "y": 300,
+        "wires": [
+            [
+                "1067d31416c7e5ba"
+            ]
+        ]
+    },
+    {
+        "id": "f9518be476d64d49",
+        "type": "mongodb-aleph-in",
+        "z": "8ee781dcc81360e0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find",
+        "collection": "categories",
+        "operation": "find",
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "760cdeaeb9aba974"
+            ]
+        ]
+    },
+    {
+        "id": "4e1c890ecffcc7b1",
+        "type": "objectid",
+        "z": "8ee781dcc81360e0",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 710,
+        "y": 300,
+        "wires": [
+            [
+                "5ca9b1403acf2f7e"
+            ]
+        ]
+    },
+    {
+        "id": "30d221c3eb5925a6",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1660,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e438e49adf5b816c",
+        "type": "debug",
+        "z": "8ee781dcc81360e0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1680,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "06aad19960ef8a03",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Create `Category was found` Response",
+        "func": "const categoryId = msg.payload[0];\nmsg.payload = { ...categoryId }\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 260,
+        "wires": [
+            [
+                "30d221c3eb5925a6",
+                "e438e49adf5b816c"
+            ]
+        ]
+    },
+    {
+        "id": "aac462ba39c5df2c",
+        "type": "http in",
+        "z": "8ee781dcc81360e0",
+        "name": "HTTP DELETE",
+        "url": "/categories/:categoryId",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 1200,
+        "wires": [
+            [
+                "f01eaa0e1df820c2"
+            ]
+        ]
+    },
+    {
+        "id": "e30e41ab94189cc9",
+        "type": "debug",
+        "z": "8ee781dcc81360e0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1920,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "82a60133b39e1f42",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 2260,
+        "y": 1040,
+        "wires": [],
+        "info": "Update successful!"
+    },
+    {
+        "id": "6b0b518b44521071",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Create `Category was deleted` Response",
+        "func": "const categoryId = msg.req.params.categoryId;\nmsg.payload = {\n    message: `Category with _id - ${categoryId} - was deleted`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2000,
+        "y": 1040,
+        "wires": [
+            [
+                "82a60133b39e1f42"
+            ]
+        ]
+    },
+    {
+        "id": "33196048e871b741",
+        "type": "mongodb-aleph-out",
+        "z": "8ee781dcc81360e0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "remove",
+        "collection": "categories",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 1720,
+        "y": 1080,
+        "wires": [
+            [
+                "e30e41ab94189cc9",
+                "6b0b518b44521071"
+            ]
+        ]
+    },
+    {
+        "id": "92695f0bd085ba3d",
+        "type": "objectid",
+        "z": "8ee781dcc81360e0",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 1510,
+        "y": 1080,
+        "wires": [
+            [
+                "33196048e871b741"
+            ]
+        ]
+    },
+    {
+        "id": "a703a7772a6b9646",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "DELETE by _id Query",
+        "func": "const categoryId = msg.req.params.categoryId;\nmsg.payload = { _id: categoryId };\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 1080,
+        "wires": [
+            [
+                "92695f0bd085ba3d"
+            ]
+        ]
+    },
+    {
+        "id": "ebe1638cd0b7f6a5",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "UPDATE Query",
+        "func": "const categoryId = msg.req.params.categoryId;\nconst updateData = msg.req.body;\n\nmsg.query = {\n    _id: categoryId\n}\n\nmsg.payload = {\n    $set: updateData\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 800,
+        "wires": [
+            [
+                "efaa92a5d93adcf4"
+            ]
+        ]
+    },
+    {
+        "id": "8a4451c87cabfe82",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1920,
+        "y": 760,
+        "wires": [],
+        "info": "Update successful!"
+    },
+    {
+        "id": "f41bf713e8599772",
+        "type": "debug",
+        "z": "8ee781dcc81360e0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1600,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "ad790ebfe462f110",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "GET by _id Query",
+        "func": "const categoryId = msg.req.params.categoryId;\n\nif (typeof categoryId !== 'string'\n    || categoryId.length !== 24\n    || !/^[0-9a-fA-F]{24}$/.test(categoryId)) {\n    msg.payload = {};\n    return msg;\n}\n\nmsg.payload = { _id: categoryId };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 920,
+        "wires": [
+            [
+                "c69ef862e8989550"
+            ]
+        ]
+    },
+    {
+        "id": "c69ef862e8989550",
+        "type": "switch",
+        "z": "8ee781dcc81360e0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 920,
+        "wires": [
+            [
+                "71e459a6ed205b22"
+            ],
+            [
+                "fd9225dbbfbd1220"
+            ]
+        ]
+    },
+    {
+        "id": "cceb91d8921ccb63",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (403)",
+        "statusCode": "403",
+        "headers": {},
+        "x": 960,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "fd9225dbbfbd1220",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Handle `Invalid _id format` Error",
+        "func": "const categoryId = msg.req.params.categoryId;\nmsg.payload = {\n    message: `Invalid _id format: ${categoryId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 980,
+        "wires": [
+            [
+                "cceb91d8921ccb63"
+            ]
+        ]
+    },
+    {
+        "id": "ccbc35491224651d",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Create `Category was updated` Response",
+        "func": "const categoryId = msg.req.params.categoryId;\nmsg.payload = {\n    message: `Category with _id - ${categoryId} - was updated`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1680,
+        "y": 760,
+        "wires": [
+            [
+                "8a4451c87cabfe82"
+            ]
+        ]
+    },
+    {
+        "id": "efaa92a5d93adcf4",
+        "type": "mongodb-aleph-out",
+        "z": "8ee781dcc81360e0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "update",
+        "collection": "categories",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "update",
+        "x": 1410,
+        "y": 800,
+        "wires": [
+            [
+                "f41bf713e8599772",
+                "ccbc35491224651d"
+            ]
+        ]
+    },
+    {
+        "id": "71e459a6ed205b22",
+        "type": "objectid",
+        "z": "8ee781dcc81360e0",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 690,
+        "y": 860,
+        "wires": [
+            [
+                "c219c5ae8641c928"
+            ]
+        ]
+    },
+    {
+        "id": "c219c5ae8641c928",
+        "type": "mongodb-aleph-in",
+        "z": "8ee781dcc81360e0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find by _id",
+        "collection": "categories",
+        "operation": "find",
+        "x": 910,
+        "y": 860,
+        "wires": [
+            [
+                "183e6c6b57f0fd52"
+            ]
+        ]
+    },
+    {
+        "id": "183e6c6b57f0fd52",
+        "type": "switch",
+        "z": "8ee781dcc81360e0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1070,
+        "y": 860,
+        "wires": [
+            [
+                "ebe1638cd0b7f6a5"
+            ],
+            [
+                "96d3163b41eaa0a5"
+            ]
+        ]
+    },
+    {
+        "id": "96d3163b41eaa0a5",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Handle `No category with _id` Error",
+        "func": "const categoryId = msg.req.params.categoryId;\nmsg.payload = {\n    message: `No category with _id: ${categoryId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 920,
+        "wires": [
+            [
+                "ab40aca4dce98185"
+            ]
+        ]
+    },
+    {
+        "id": "ab40aca4dce98185",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1520,
+        "y": 920,
+        "wires": [],
+        "info": "### There is no product with `_id: ${msg.req.productId}` "
+    },
+    {
+        "id": "32aa1dec18fde77d",
+        "type": "http in",
+        "z": "8ee781dcc81360e0",
+        "name": "HTTP PUT",
+        "url": "/categories/:categoryId",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 920,
+        "wires": [
+            [
+                "ad790ebfe462f110"
+            ]
+        ]
+    },
+    {
+        "id": "f01eaa0e1df820c2",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "GET by _id Query",
+        "func": "const categoryId = msg.req.params.categoryId;\n\nif (typeof categoryId !== 'string'\n    || categoryId.length !== 24\n    || !/^[0-9a-fA-F]{24}$/.test(categoryId)) {\n    msg.payload = {};\n    return msg;\n}\n\nmsg.payload = { _id: categoryId };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1200,
+        "wires": [
+            [
+                "bde401582d4dd9a3"
+            ]
+        ]
+    },
+    {
+        "id": "bde401582d4dd9a3",
+        "type": "switch",
+        "z": "8ee781dcc81360e0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 1200,
+        "wires": [
+            [
+                "e3e1605590d6423a"
+            ],
+            [
+                "752bfce3fe48e1a6"
+            ]
+        ]
+    },
+    {
+        "id": "bf71c05de0ca8d30",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (403)",
+        "statusCode": "403",
+        "headers": {},
+        "x": 960,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "752bfce3fe48e1a6",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Handle `Invalid _id format` Error",
+        "func": "const categoryId = msg.req.params.categoryId;\nmsg.payload = {\n    message: `Invalid _id format: ${categoryId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 1260,
+        "wires": [
+            [
+                "bf71c05de0ca8d30"
+            ]
+        ]
+    },
+    {
+        "id": "e3e1605590d6423a",
+        "type": "objectid",
+        "z": "8ee781dcc81360e0",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 690,
+        "y": 1140,
+        "wires": [
+            [
+                "1bc9f2269b4acdc8"
+            ]
+        ]
+    },
+    {
+        "id": "1bc9f2269b4acdc8",
+        "type": "mongodb-aleph-in",
+        "z": "8ee781dcc81360e0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find by _id",
+        "collection": "categories",
+        "operation": "find",
+        "x": 910,
+        "y": 1140,
+        "wires": [
+            [
+                "186bed44e35d65f3"
+            ]
+        ]
+    },
+    {
+        "id": "186bed44e35d65f3",
+        "type": "switch",
+        "z": "8ee781dcc81360e0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1070,
+        "y": 1140,
+        "wires": [
+            [
+                "a703a7772a6b9646"
+            ],
+            [
+                "9c1386d498cf65b3"
+            ]
+        ]
+    },
+    {
+        "id": "9c1386d498cf65b3",
+        "type": "function",
+        "z": "8ee781dcc81360e0",
+        "name": "Handle `No category with _id` Error",
+        "func": "const categoryId = msg.req.params.categoryId;\nmsg.payload = {\n    message: `No category with _id: ${categoryId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 1200,
+        "wires": [
+            [
+                "1ee5d84d598086b8"
+            ]
+        ]
+    },
+    {
+        "id": "1ee5d84d598086b8",
+        "type": "http response",
+        "z": "8ee781dcc81360e0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1520,
+        "y": 1200,
+        "wires": [],
+        "info": "### There is no product with `_id: ${msg.req.productId}` "
+    },
+    {
+        "id": "fe8c66a13cafa398",
+        "type": "http in",
+        "z": "22baa481e16868a0",
+        "name": "HTTP GET",
+        "url": "/orders",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "674ce651cec910c1"
+            ]
+        ]
+    },
+    {
+        "id": "674ce651cec910c1",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "GET Query",
+        "func": "msg.payload = {};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 100,
+        "wires": [
+            [
+                "5b2417713f1a64e2"
+            ]
+        ]
+    },
+    {
+        "id": "cecfe223c7cd4671",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 880,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "44a0d50566de8715",
+        "type": "switch",
+        "z": "22baa481e16868a0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 100,
+        "wires": [
+            [
+                "cecfe223c7cd4671",
+                "de4ee7b0d1310782"
+            ],
+            [
+                "71a6bd19afb5b044"
+            ]
+        ]
+    },
+    {
+        "id": "71a6bd19afb5b044",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Handle `No orders yet` Error",
+        "func": "msg.payload = {\n    message: `No orders yet`\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 140,
+        "wires": [
+            [
+                "d55958600f00adb9"
+            ]
+        ]
+    },
+    {
+        "id": "d55958600f00adb9",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1180,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e097b33298b685fc",
+        "type": "http in",
+        "z": "22baa481e16868a0",
+        "name": "HTTP GET by _id",
+        "url": "/orders/:orderId",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "8af1416541cdb1fc"
+            ]
+        ]
+    },
+    {
+        "id": "8af1416541cdb1fc",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "GET by _id Query",
+        "func": "const orderId = msg.req.params.orderId;\n\nif (typeof orderId !== 'string'\n    || orderId.length !== 24\n    || !/^[0-9a-fA-F]{24}$/.test(orderId)) {\n    msg.payload = {};\n    return msg;\n}\n\nmsg.payload = { _id: orderId };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "ac567aaa3662a027"
+            ]
+        ]
+    },
+    {
+        "id": "66b1fed83852e98c",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1280,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e7b6add96a23744d",
+        "type": "debug",
+        "z": "22baa481e16868a0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "3c2e561ede20735e",
+        "type": "switch",
+        "z": "22baa481e16868a0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1110,
+        "y": 300,
+        "wires": [
+            [
+                "e7b6add96a23744d",
+                "66b1fed83852e98c"
+            ],
+            [
+                "3b40fef4dafc7cfb"
+            ]
+        ]
+    },
+    {
+        "id": "42ca3f546ac973e6",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1620,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3b40fef4dafc7cfb",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Handle `No order with _id` Error",
+        "func": "const orderId = msg.req.params.orderId;\nmsg.payload = {\n    message: `No order with _id: ${orderId}`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1350,
+        "y": 340,
+        "wires": [
+            [
+                "42ca3f546ac973e6"
+            ]
+        ]
+    },
+    {
+        "id": "ac567aaa3662a027",
+        "type": "switch",
+        "z": "22baa481e16868a0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "9853355c109fde42"
+            ],
+            [
+                "e0224bb126749df0"
+            ]
+        ]
+    },
+    {
+        "id": "e0224bb126749df0",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Handle `Invalid _id format` Error",
+        "func": "const orderId = msg.req.params.orderId;\n\nmsg.payload = {\n    message: `Invalid _id format: ${orderId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 420,
+        "wires": [
+            [
+                "5b2d09a884d18d46"
+            ]
+        ]
+    },
+    {
+        "id": "5b2d09a884d18d46",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (403)",
+        "statusCode": "403",
+        "headers": {},
+        "x": 980,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "dfc013a705dde04e",
+        "type": "http in",
+        "z": "22baa481e16868a0",
+        "name": "HTTP POST",
+        "url": "/orders",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 620,
+        "wires": [
+            [
+                "52d4534620f9d1d2"
+            ]
+        ]
+    },
+    {
+        "id": "52d4534620f9d1d2",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "GET Query",
+        "func": "const orderData = {\n    orderNumber: msg.req.body.orderNumber,\n};\nmsg.payload = orderData;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 620,
+        "wires": [
+            [
+                "08733196d6e8bd91"
+            ]
+        ]
+    },
+    {
+        "id": "d5ca7b397be8ab09",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (201)",
+        "statusCode": "201",
+        "headers": {},
+        "x": 1540,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a5470d7f4c7452d5",
+        "type": "debug",
+        "z": "22baa481e16868a0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "ae4d9e3c7ab1114d",
+        "type": "switch",
+        "z": "22baa481e16868a0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 620,
+        "wires": [
+            [
+                "2ede1d60592b07f1"
+            ],
+            [
+                "5082e2f7d433a85d"
+            ]
+        ]
+    },
+    {
+        "id": "6603bc97bc87518d",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1220,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "2ede1d60592b07f1",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "POST Query",
+        "func": "const orderData = {\n    orderNumber: msg.req.body.orderNumber,\n    customerName: msg.req.body.customerName,\n    orderDate: new Date(msg.req.body.orderDate),\n    totalCost: msg.req.body.totalCost,\n    products: msg.req.body.products.map(product => ({\n        _id: product._id,\n        name: product.name,\n        category: product.category,\n        price: product.price,\n        quantity: product.quantity,\n    }))\n};\nmsg.payload = orderData;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 560,
+        "wires": [
+            [
+                "9edc451108f4a46c"
+            ]
+        ]
+    },
+    {
+        "id": "5082e2f7d433a85d",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Handle `Order already exists` Error",
+        "func": "const orderNumber = msg.req.body.orderNumber;\nmsg.payload = {\n    message: `Order with number - ${orderNumber} - already exists`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 680,
+        "wires": [
+            [
+                "6603bc97bc87518d"
+            ]
+        ]
+    },
+    {
+        "id": "aee75f924eeb9322",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Create `Order was created` Response",
+        "func": "const orderNumber = msg.payload.orderNumber;\nconst orderId = msg.payload._id\nmsg.payload = {\n    message: `Order with number - ${orderNumber} - was created`,\n    _id: orderId\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1290,
+        "y": 520,
+        "wires": [
+            [
+                "d5ca7b397be8ab09"
+            ]
+        ]
+    },
+    {
+        "id": "de4ee7b0d1310782",
+        "type": "debug",
+        "z": "22baa481e16868a0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0e56699147615096",
+        "type": "http in",
+        "z": "22baa481e16868a0",
+        "name": "HTTP PUT",
+        "url": "/orders/:orderId",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 960,
+        "wires": [
+            [
+                "de195afc8830a470"
+            ]
+        ]
+    },
+    {
+        "id": "a0a308a89b8cbea4",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1920,
+        "y": 800,
+        "wires": [],
+        "info": "Update successful!"
+    },
+    {
+        "id": "84223bdac2b25346",
+        "type": "debug",
+        "z": "22baa481e16868a0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1600,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "de195afc8830a470",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "GET by _id Query",
+        "func": "const orderId = msg.req.params.orderId;\n\nif (typeof orderId !== 'string'\n    || orderId.length !== 24\n    || !/^[0-9a-fA-F]{24}$/.test(orderId)) {\n    msg.payload = {};\n    return msg;\n}\n\nmsg.payload = { _id: orderId };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 960,
+        "wires": [
+            [
+                "51f7fd045ee89ab2"
+            ]
+        ]
+    },
+    {
+        "id": "51f7fd045ee89ab2",
+        "type": "switch",
+        "z": "22baa481e16868a0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 960,
+        "wires": [
+            [
+                "a74f6815534adf1a"
+            ],
+            [
+                "26c2f9c7d9d21842"
+            ]
+        ]
+    },
+    {
+        "id": "10ccec06fcee96be",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (403)",
+        "statusCode": "403",
+        "headers": {},
+        "x": 960,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "26c2f9c7d9d21842",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Handle `Invalid _id format` Error",
+        "func": "const orderId = msg.req.params.orderId;\nmsg.payload = {\n    message: `Invalid _id format: ${orderId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 1020,
+        "wires": [
+            [
+                "10ccec06fcee96be"
+            ]
+        ]
+    },
+    {
+        "id": "5510b0decf0c0d06",
+        "type": "switch",
+        "z": "22baa481e16868a0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1050,
+        "y": 900,
+        "wires": [
+            [
+                "913b8b3a7499d4b9"
+            ],
+            [
+                "41217199babfc0df"
+            ]
+        ]
+    },
+    {
+        "id": "2827b95306d6efcb",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1500,
+        "y": 960,
+        "wires": [],
+        "info": "### There is no product with `_id: ${msg.req.productId}` "
+    },
+    {
+        "id": "41217199babfc0df",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Handle `No order with _id` Error",
+        "func": "const orderId = msg.req.params.orderId;\nmsg.payload = {\n    message: `No order with _id: ${orderId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 960,
+        "wires": [
+            [
+                "2827b95306d6efcb"
+            ]
+        ]
+    },
+    {
+        "id": "dd48fe7844fd0252",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Create `Order was updated` Response",
+        "func": "const orderNumber = msg.req.params.orderNumber;\nmsg.payload = {\n    message: `Order with name - ${orderNumber} - was updated`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1670,
+        "y": 800,
+        "wires": [
+            [
+                "a0a308a89b8cbea4"
+            ]
+        ]
+    },
+    {
+        "id": "a7dcbb4480258f35",
+        "type": "http in",
+        "z": "22baa481e16868a0",
+        "name": "HTTP DELETE",
+        "url": "/orders/:orderId",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 1320,
+        "wires": [
+            [
+                "83d692e81f1105d8"
+            ]
+        ]
+    },
+    {
+        "id": "f44c01c044fc52d2",
+        "type": "debug",
+        "z": "22baa481e16868a0",
+        "name": "Request Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1860,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "75f3b17d53ea186a",
+        "type": "switch",
+        "z": "22baa481e16868a0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 510,
+        "y": 1320,
+        "wires": [
+            [
+                "c552f411444ca376"
+            ],
+            [
+                "f91625283b0f0f70"
+            ]
+        ]
+    },
+    {
+        "id": "f07b405474315484",
+        "type": "switch",
+        "z": "22baa481e16868a0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1050,
+        "y": 1260,
+        "wires": [
+            [
+                "284b9019763f5af9"
+            ],
+            [
+                "dd5737e4d14ddba3"
+            ]
+        ]
+    },
+    {
+        "id": "53b8f85bd597c8ec",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (403)",
+        "statusCode": "403",
+        "headers": {},
+        "x": 960,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "f91625283b0f0f70",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Handle `Invalid _id format` Error",
+        "func": "const orderId = msg.req.params.orderId;\nmsg.payload = {\n    message: `Invalid _id format: ${orderId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 1380,
+        "wires": [
+            [
+                "53b8f85bd597c8ec"
+            ]
+        ]
+    },
+    {
+        "id": "3e07e65f6e943b5e",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (409)",
+        "statusCode": "409",
+        "headers": {},
+        "x": 1500,
+        "y": 1320,
+        "wires": [],
+        "info": "### There is no product with `_id: ${msg.req.productId}` "
+    },
+    {
+        "id": "dd5737e4d14ddba3",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Handle `No order with _id` Error",
+        "func": "const orderId = msg.req.params.orderId;\nmsg.payload = {\n    message: `No order with _id: ${orderId}`\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 1320,
+        "wires": [
+            [
+                "3e07e65f6e943b5e"
+            ]
+        ]
+    },
+    {
+        "id": "b0cb12b51dbc5dca",
+        "type": "http response",
+        "z": "22baa481e16868a0",
+        "name": "http (200)",
+        "statusCode": "200",
+        "headers": {},
+        "x": 2180,
+        "y": 1160,
+        "wires": [],
+        "info": "Update successful!"
+    },
+    {
+        "id": "3c4842c45170b3fc",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "Create `Order was deleted` Response",
+        "func": "const orderId = msg.req.params.orderId;\nmsg.payload = {\n    message: `Order with _id - ${orderId} - was deleted`\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1930,
+        "y": 1160,
+        "wires": [
+            [
+                "b0cb12b51dbc5dca"
+            ]
+        ]
+    },
+    {
+        "id": "9edc451108f4a46c",
+        "type": "mongodb-aleph-out",
+        "z": "22baa481e16868a0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "insert",
+        "collection": "orders",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "insert",
+        "x": 1030,
+        "y": 560,
+        "wires": [
+            [
+                "a5470d7f4c7452d5",
+                "aee75f924eeb9322"
+            ]
+        ]
+    },
+    {
+        "id": "bfde16970d52fb0c",
+        "type": "mongodb-aleph-out",
+        "z": "22baa481e16868a0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "update",
+        "collection": "orders",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "update",
+        "x": 1410,
+        "y": 840,
+        "wires": [
+            [
+                "84223bdac2b25346",
+                "dd48fe7844fd0252"
+            ]
+        ]
+    },
+    {
+        "id": "f18d1d3dbd973430",
+        "type": "mongodb-aleph-out",
+        "z": "22baa481e16868a0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "remove",
+        "collection": "orders",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 1660,
+        "y": 1200,
+        "wires": [
+            [
+                "f44c01c044fc52d2",
+                "3c4842c45170b3fc"
+            ]
+        ]
+    },
+    {
+        "id": "5b2417713f1a64e2",
+        "type": "mongodb-aleph-in",
+        "z": "22baa481e16868a0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find",
+        "collection": "orders",
+        "operation": "find",
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "44a0d50566de8715"
+            ]
+        ]
+    },
+    {
+        "id": "6b16f5a15923a5a9",
+        "type": "mongodb-aleph-in",
+        "z": "22baa481e16868a0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find by _id",
+        "collection": "orders",
+        "operation": "find",
+        "x": 930,
+        "y": 300,
+        "wires": [
+            [
+                "3c2e561ede20735e"
+            ]
+        ]
+    },
+    {
+        "id": "08733196d6e8bd91",
+        "type": "mongodb-aleph-in",
+        "z": "22baa481e16868a0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find",
+        "collection": "orders",
+        "operation": "find",
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "ae4d9e3c7ab1114d"
+            ]
+        ]
+    },
+    {
+        "id": "89749c6884d86773",
+        "type": "mongodb-aleph-in",
+        "z": "22baa481e16868a0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find by _id",
+        "collection": "orders",
+        "operation": "find",
+        "x": 890,
+        "y": 900,
+        "wires": [
+            [
+                "5510b0decf0c0d06"
+            ]
+        ]
+    },
+    {
+        "id": "c4af9a0acd9715bc",
+        "type": "mongodb-aleph-in",
+        "z": "22baa481e16868a0",
+        "mongodb": "7b48ef8677536b22",
+        "name": "find by _id",
+        "collection": "orders",
+        "operation": "find",
+        "x": 890,
+        "y": 1260,
+        "wires": [
+            [
+                "f07b405474315484"
+            ]
+        ]
+    },
+    {
+        "id": "9853355c109fde42",
+        "type": "objectid",
+        "z": "22baa481e16868a0",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 710,
+        "y": 300,
+        "wires": [
+            [
+                "6b16f5a15923a5a9"
+            ]
+        ]
+    },
+    {
+        "id": "c552f411444ca376",
+        "type": "objectid",
+        "z": "22baa481e16868a0",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 690,
+        "y": 1260,
+        "wires": [
+            [
+                "c4af9a0acd9715bc"
+            ]
+        ]
+    },
+    {
+        "id": "83d692e81f1105d8",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "GET by _id Query",
+        "func": "const orderId = msg.req.params.orderId;\n\nif (typeof orderId !== 'string'\n    || orderId.length !== 24\n    || !/^[0-9a-fA-F]{24}$/.test(orderId)) {\n    msg.payload = {};\n    return msg;\n}\n\nmsg.payload = { _id: orderId };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1320,
+        "wires": [
+            [
+                "75f3b17d53ea186a"
+            ]
+        ]
+    },
+    {
+        "id": "284b9019763f5af9",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "DELETE by _id Query",
+        "func": "const orderId = msg.req.params.orderId;\nmsg.payload = { _id: orderId };\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 1200,
+        "wires": [
+            [
+                "309aa075ebb7c4ae"
+            ]
+        ]
+    },
+    {
+        "id": "309aa075ebb7c4ae",
+        "type": "objectid",
+        "z": "22baa481e16868a0",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 1470,
+        "y": 1200,
+        "wires": [
+            [
+                "f18d1d3dbd973430"
+            ]
+        ]
+    },
+    {
+        "id": "a74f6815534adf1a",
+        "type": "objectid",
+        "z": "22baa481e16868a0",
+        "name": "Convert to ObjectId",
+        "selectedProperty": "_id",
+        "x": 690,
+        "y": 900,
+        "wires": [
+            [
+                "89749c6884d86773"
+            ]
+        ]
+    },
+    {
+        "id": "913b8b3a7499d4b9",
+        "type": "function",
+        "z": "22baa481e16868a0",
+        "name": "UPDATE Query",
+        "func": "const orderId = msg.req.params.orderId;\nconst orderData = {\n    orderNumber: msg.req.body.orderNumber,\n    customerName: msg.req.body.customerName,\n    orderDate: new Date(msg.req.body.orderDate),\n    totalCost: msg.req.body.totalCost,\n    products: msg.req.body.products.map(product => ({\n        _id: product._id,\n        name: product.name,\n        category: product.category,\n        price: product.price,\n        quantity: product.quantity,\n    }))\n};\n\nmsg.query = {\n    _id: orderId\n}\nmsg.payload = {\n    $set: orderData\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 840,
+        "wires": [
+            [
+                "bfde16970d52fb0c"
+            ]
+        ]
+    }
+]
