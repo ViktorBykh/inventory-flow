@@ -1,5 +1,6 @@
 {
-  "name": "https://ViktorBykh.github.io/inventory-flow",
+  "homepage": "https://ViktorBykh.github.io/inventory-flow",
+  "name": "inventory-flow",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
