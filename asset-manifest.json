@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/inventory-flow/static/css/main.b40c7b9a.css",
-    "main.js": "/inventory-flow/static/js/main.4107c8d9.js",
+    "main.js": "/inventory-flow/static/js/main.c179e674.js",
     "static/media/fa-solid-900.ttf": "/inventory-flow/static/media/fa-solid-900.bacd5de623fb563b961a.ttf",
     "static/media/fa-brands-400.ttf": "/inventory-flow/static/media/fa-brands-400.60127e352b7a11f7f1bc.ttf",
     "static/media/fa-solid-900.woff2": "/inventory-flow/static/media/fa-solid-900.4d986b00ff9ca3828fbd.woff2",
@@ -12,10 +12,10 @@
     "static/media/fa-v4compatibility.woff2": "/inventory-flow/static/media/fa-v4compatibility.cf7f5903d06b79ad60f1.woff2",
     "index.html": "/inventory-flow/index.html",
     "main.b40c7b9a.css.map": "/inventory-flow/static/css/main.b40c7b9a.css.map",
-    "main.4107c8d9.js.map": "/inventory-flow/static/js/main.4107c8d9.js.map"
+    "main.c179e674.js.map": "/inventory-flow/static/js/main.c179e674.js.map"
   },
   "entrypoints": [
     "static/css/main.b40c7b9a.css",
-    "static/js/main.4107c8d9.js"
+    "static/js/main.c179e674.js"
   ]
 }
