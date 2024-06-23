@@ -1,0 +1,68 @@
+{
+  "name": "https://ViktorBykh.github.io/inventory-flow",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@types/node": "^16.18.97",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "axios": "^1.7.1",
+    "bulma": "^1.0.1",
+    "mongodb": "^6.6.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^6.23.1",
+    "react-scripts": "5.0.1",
+    "resolve-url-loader": "^5.0.0",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "react-scripts build",
+    "test": "jest",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6",
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.5.12",
+    "@types/react-helmet": "^6.1.11",
+    "babel-jest": "^29.7.0",
+    "esbuild": "^0.21.4",
+    "esbuild-jest": "^0.5.0",
+    "gh-pages": "^6.1.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
+    "jsdom": "^24.1.0",
+    "sass": "^1.77.2",
+    "ts-jest": "^29.1.3"
+  }
+}
