@@ -1,4 +1,4 @@
-export const BASE_URL = "https://team-viktor-bykh-viktor-e7e202c6.flowfuse.cloud";
+export const BASE_URL = "https://team-viktor-bykh-api-admin-5cc705e0.flowfuse.cloud";
 
 type RequestMethod = "GET" | "POST" | "PUT" | "DELETE";
 
